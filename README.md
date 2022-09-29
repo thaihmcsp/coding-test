@@ -13,7 +13,14 @@ install mongoDB <br />
             <br />
             
 <b><i>import collection</i></b>
-import "<b>bookApp.postman_collection.json</b>" to postman.
+import "<b>bookApp.postman_collection.json</b>" to postman. <br/>
+
+Add this command to "<b>Tests</b>" Tag in "<b>Auth/Sign-in</b>" API
+"<b>pm.environment.set("TOKEN", pm.response.json().token);</b>"
+
+<img src="https://user-images.githubusercontent.com/66521122/192919017-c4503993-28af-4fbb-a468-abd8a915e6cb.png">
+
+
 
 <b><i>setup authorization</i></b> <br/>
 
