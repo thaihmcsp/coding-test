@@ -17,7 +17,7 @@ import "<b>bookApp.postman_collection.json</b>" to postman.
 
 <b><i>setup authorization</i></b> <br/>
 
-set authorization to Beaer TOKEN <br/>
-set token to TOKEN <br/>
+set "<b>authorization</b>" to "<b>Beaer TOKEN</b>" <br/>
+set "<b>token</b>" to "<b>TOKEN</b>" <br/>
 <img src="https://user-images.githubusercontent.com/66521122/192918630-96f7952c-65e5-4505-b0b1-f2d643606a92.png">
 
