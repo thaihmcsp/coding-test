@@ -5,26 +5,37 @@ import { User } from "../models/User";
 import { faker } from '@faker-js/faker';
 import bcrypt from 'bcrypt';
 
-mongoose.connect(`mongodb://localhost/bookApp`);
-
 const createRandomUser = async () => {
     let password = faker.internet.password();
     try {
         const hashPassword = await bcrypt.hash(password, 10);
-        return {
+        await User.create({
             Name: faker.internet.userName(),
             Email: faker.internet.email(),
             Password: hashPassword
-        };
+        });
     } catch (error) {
         return error;
     }
 }
+
+const createRandomCategory = async () => {
+    try {
+        await Category.create({
+            Name: faker.internet.userName(),
+        });
+    } catch (error) {
+        return error;
+    }
+}
+
 const createRandomBook = async () => {
     // let password = faker.internet.password();
     try {
-        const category = await Category.findOne();
-        const user = await User.findOne();
+        const countCategory = await Category.count();
+        const countUser = await User.count();
+        const category = await Category.findOne().skip(Math.floor(Math.random() * countCategory));
+        const user = await User.findOne().skip(Math.floor(Math.random() * countUser));
         await Book.create({
             Name: faker.internet.userName(),
             CategoryID: category?._id,
@@ -35,8 +46,16 @@ const createRandomBook = async () => {
     }
 }
 
-export const createBook = () => {
-    for(let i = 0; i < 1000; i++){
-        createRandomBook()
+export const createBook = async () => {
+    for(let i = 0; i < 100; i++){
+        await createRandomUser();
+    }
+
+    for(let i = 0; i < 10; i++){
+        await createRandomCategory();
+    }
+
+    for(let i = 0; i < 10000; i++){
+        createRandomBook();
     }
 }
