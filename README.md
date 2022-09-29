@@ -1,5 +1,5 @@
 First           
-            install mongoDB
+            install mongoDB 
 
 Command
             npm run dev         -----------     run app
