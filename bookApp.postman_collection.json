@@ -1,0 +1,585 @@
+{
+	"info": {
+		"_postman_id": "dc5acd85-7a83-403c-ba95-83967c0062da",
+		"name": "bookApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "thai",
+									"type": "default"
+								},
+								{
+									"key": "Password",
+									"value": "password",
+									"type": "default"
+								},
+								{
+									"key": "Email",
+									"value": "thai@gmail.com",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{PORT}}/api/auth/create-user",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"create-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "linh12341",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "Email",
+									"value": "thai@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "Password",
+									"value": "password",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{PORT}}/api/auth/sign-in",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/auth/me",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/user/get-all-users",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"get-all-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "currentPassword",
+									"value": "test",
+									"type": "default"
+								},
+								{
+									"key": "Password",
+									"value": "password",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{PORT}}/api/user/change-password",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/user/get-one-user/6332c863b676cbd2058a8a70",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"get-one-user",
+								"6332c863b676cbd2058a8a70"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/user/delete-user/633420f76f36d4bdc045f86c",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"delete-user",
+								"633420f76f36d4bdc045f86c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change user info",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "Tung",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{PORT}}/api/user/update-user-info",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"update-user-info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Get all books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/book/get-all-books",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"get-all-books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "dota",
+									"type": "default"
+								},
+								{
+									"key": "CategoryID",
+									"value": "63332afc22cf7659bc5c374a",
+									"type": "default"
+								},
+								{
+									"key": "AuthorID",
+									"value": "ddddd",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{PORT}}/api/book/add-book",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"add-book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "test",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{PORT}}/api/book/update-book/63339b84f7395cd017eef612",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"update-book",
+								"63339b84f7395cd017eef612"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/book/get-one-book/6333301c73ede4fddb95b14d",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"get-one-book",
+								"6333301c73ede4fddb95b14d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete book",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/book/delete-book/6333301c73ede4fddb95b14d",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"delete-book",
+								"6333301c73ede4fddb95b14d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-books-by-author",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/book/get-books-by-author/6333085e2b852d18aae9",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"get-books-by-author",
+								"6333085e2b852d18aae9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "count all book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/book/count-all-books",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"count-all-books"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "get all category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/category/get-all-categories",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"category",
+								"get-all-categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "commic",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{PORT}}/api/category/create-category",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"category",
+								"create-category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Category",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "book",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{PORT}}/api/category/update-category/633325d92607c425f82840fc",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"category",
+								"update-category",
+								"633325d92607c425f82840fc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/category/delete-category/63332afc22cf7659bc5c374a",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"category",
+								"delete-category",
+								"63332afc22cf7659bc5c374a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PORT}}/api/category/get-one-category/63332afc22cf7659bc5c374a",
+							"host": [
+								"{{PORT}}"
+							],
+							"path": [
+								"api",
+								"category",
+								"get-one-category",
+								"63332afc22cf7659bc5c374a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

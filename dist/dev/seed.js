@@ -13,22 +13,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createBook = void 0;
-const mongoose_1 = __importDefault(require("mongoose"));
 const Book_1 = require("../models/Book");
 const Category_1 = require("../models/Category");
 const User_1 = require("../models/User");
 const faker_1 = require("@faker-js/faker");
 const bcrypt_1 = __importDefault(require("bcrypt"));
-mongoose_1.default.connect(`mongodb://localhost/bookApp`);
 const createRandomUser = () => __awaiter(void 0, void 0, void 0, function* () {
     let password = faker_1.faker.internet.password();
     try {
         const hashPassword = yield bcrypt_1.default.hash(password, 10);
-        return {
+        yield User_1.User.create({
             Name: faker_1.faker.internet.userName(),
             Email: faker_1.faker.internet.email(),
             Password: hashPassword
-        };
+        });
+    }
+    catch (error) {
+        return error;
+    }
+});
+const createRandomCategory = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield Category_1.Category.create({
+            Name: faker_1.faker.internet.userName(),
+        });
     }
     catch (error) {
         return error;
@@ -37,8 +45,10 @@ const createRandomUser = () => __awaiter(void 0, void 0, void 0, function* () {
 const createRandomBook = () => __awaiter(void 0, void 0, void 0, function* () {
     // let password = faker.internet.password();
     try {
-        const category = yield Category_1.Category.findOne();
-        const user = yield User_1.User.findOne();
+        const countCategory = yield Category_1.Category.count();
+        const countUser = yield User_1.User.count();
+        const category = yield Category_1.Category.findOne().skip(Math.floor(Math.random() * countCategory));
+        const user = yield User_1.User.findOne().skip(Math.floor(Math.random() * countUser));
         yield Book_1.Book.create({
             Name: faker_1.faker.internet.userName(),
             CategoryID: category === null || category === void 0 ? void 0 : category._id,
@@ -49,9 +59,15 @@ const createRandomBook = () => __awaiter(void 0, void 0, void 0, function* () {
         return error;
     }
 });
-const createBook = () => {
-    for (let i = 0; i < 1000; i++) {
+const createBook = () => __awaiter(void 0, void 0, void 0, function* () {
+    for (let i = 0; i < 100; i++) {
+        yield createRandomUser();
+    }
+    for (let i = 0; i < 10; i++) {
+        yield createRandomCategory();
+    }
+    for (let i = 0; i < 10000; i++) {
         createRandomBook();
     }
-};
+});
 exports.createBook = createBook;

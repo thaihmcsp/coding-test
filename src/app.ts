@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 import express, { Express } from 'express';
 import mongoose from 'mongoose';
-import { createBook } from './dev/seed.js';
 import { startUp } from './startUp/index.js';
 dotenv.config();
 
@@ -11,7 +10,6 @@ const dbName = process.env.DB_NAME;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-createBook();
 
 startUp(app);
 

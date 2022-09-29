@@ -12,17 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
-const index_js_1 = require("./startUp/index.js");
+const dotenv_1 = __importDefault(require("dotenv"));
+const seed_js_1 = require("./seed.js");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = process.env.PORT;
+const port = 3001;
 const dbName = process.env.DB_NAME;
-app.use(express_1.default.json());
-app.use(express_1.default.urlencoded({ extended: true }));
-(0, index_js_1.startUp)(app);
+(0, seed_js_1.createBook)();
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     yield mongoose_1.default.connect(`mongodb://localhost/${dbName}`);
     console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
