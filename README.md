@@ -1,11 +1,11 @@
-**First**   <br />
+*First*   <br />
 install mongoDB <br />
 <br />
-**Command** <br />
+*Command* <br />
             npm run dev         -----------     run app <br />
             npm run seed        -----------     seed data <br />
 <br />
-**Envirionment**     <br />
+*Envirionment*     <br />
             Postman <br />
 <br />
             setup environtment
