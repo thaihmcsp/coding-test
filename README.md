@@ -1,11 +1,11 @@
-First           
-            install mongoDB 
+**First** 
+install mongoDB 
 
-Command
+**Command**
             npm run dev         -----------     run app
             npm run seed        -----------     seed data
 
-Envirionment    
+**Envirionment**    
             Postman
 
             setup environtment
