@@ -12,5 +12,12 @@ install mongoDB <br />
             <img src="https://user-images.githubusercontent.com/66521122/192918169-afae592e-69ae-4d0f-8e3b-64eef1d8af02.png"> 
             <br />
             
-<h2><i>import collection</i></h2>
-import <b>bookApp.postman_collection.json</b> to postman
+<b><i>import collection</i></b>
+import "<b>bookApp.postman_collection.json</b>" to postman.
+
+<b><i>setup authorization</i></b> <br/>
+
+set authorization to Beaer TOKEN <br/>
+set token to TOKEN <br/>
+<img src="https://user-images.githubusercontent.com/66521122/192918630-96f7952c-65e5-4505-b0b1-f2d643606a92.png">
+
